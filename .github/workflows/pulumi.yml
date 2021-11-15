@@ -1,4 +1,4 @@
-name: Deploy to ECS with Pulumi
+name: Deploy Container to ECS with Pulumi
 on:
   push:
 
