@@ -5,6 +5,7 @@ import json
 ...
 # Create an AWS resource (ECS Cluster)
 cluster = aws.ecs.Cluster("ecs-pulumi-cluster-3")
+container_secret = aws.secretsmanager.get_secret(arn="arn:aws:secretsmanager:us-west-2:272603463567:secret:prad_secret-1emAvr")
 
 ...
 # Create Load Balancer
@@ -84,7 +85,8 @@ task_definition = aws.ecs.TaskDefinition("pulumi-demo-task",
                                              "name": "pulumi-demo-app",
                                              "image": "272603463567.dkr.ecr.us-west-2.amazonaws.com/ecr-devops-pradipta",
                                              "secrets": [{
-                                                    "pradsecret" : "secret-value"
+                                                    "Name" : "prad_secret",
+                                                    "ValueFrom": container_secret
                                              }],
                                              "environment": [{
                                                     "pradenv" : "env-value"
