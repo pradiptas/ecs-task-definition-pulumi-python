@@ -83,6 +83,12 @@ task_definition = aws.ecs.TaskDefinition("pulumi-demo-task",
                                          container_definitions=json.dumps([{
                                              "name": "pulumi-demo-app",
                                              "image": "272603463567.dkr.ecr.us-west-2.amazonaws.com/ecr-devops-pradipta",
+                                             "secrets": [{
+                                                    "pradsecret" : "secret-value"
+                                             }],
+                                             "environment": [{
+                                                    "pradenv" : "env-value"
+                                             }],
                                              "portMappings": [{
                                                  "containerPort": 80,
                                                  "hostPort": 80,
